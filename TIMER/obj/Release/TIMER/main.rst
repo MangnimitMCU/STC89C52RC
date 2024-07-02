@@ -1,0 +1,563 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 4.2.0 #13081 (MINGW64)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module main
+                                      6 	.optsdcc -mmcs51 --model-small
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _main
+                                     12 	.globl _Timer2_InterruptHandler
+                                     13 	.globl _Timer1_InterruptHandler
+                                     14 	.globl _Timer0_InterruptHandler
+                                     15 	.globl _P47
+                                     16 	.globl _P46
+                                     17 	.globl _P45
+                                     18 	.globl _P44
+                                     19 	.globl _P43
+                                     20 	.globl _P42
+                                     21 	.globl _P41
+                                     22 	.globl _P40
+                                     23 	.globl _PX3
+                                     24 	.globl _EX3
+                                     25 	.globl _IE3
+                                     26 	.globl _IT3
+                                     27 	.globl _PX2
+                                     28 	.globl _EX2
+                                     29 	.globl _IE2
+                                     30 	.globl _IT2
+                                     31 	.globl _CY
+                                     32 	.globl _AC
+                                     33 	.globl _F0
+                                     34 	.globl _RS1
+                                     35 	.globl _RS0
+                                     36 	.globl _OV
+                                     37 	.globl _P
+                                     38 	.globl _TF2
+                                     39 	.globl _EXF2
+                                     40 	.globl _RCLK
+                                     41 	.globl _TCLK
+                                     42 	.globl _EXEN2
+                                     43 	.globl _TR2
+                                     44 	.globl _C_T2
+                                     45 	.globl _CP_RL2
+                                     46 	.globl _PT2
+                                     47 	.globl _PS
+                                     48 	.globl _PT1
+                                     49 	.globl _PX1
+                                     50 	.globl _PT0
+                                     51 	.globl _PX0
+                                     52 	.globl _P37
+                                     53 	.globl _P36
+                                     54 	.globl _P35
+                                     55 	.globl _P34
+                                     56 	.globl _P33
+                                     57 	.globl _P32
+                                     58 	.globl _P31
+                                     59 	.globl _P30
+                                     60 	.globl _EA
+                                     61 	.globl _ET2
+                                     62 	.globl _ES
+                                     63 	.globl _ET1
+                                     64 	.globl _EX1
+                                     65 	.globl _ET0
+                                     66 	.globl _EX0
+                                     67 	.globl _P27
+                                     68 	.globl _P26
+                                     69 	.globl _P25
+                                     70 	.globl _P24
+                                     71 	.globl _P23
+                                     72 	.globl _P22
+                                     73 	.globl _P21
+                                     74 	.globl _P20
+                                     75 	.globl _SM0
+                                     76 	.globl _SM1
+                                     77 	.globl _SM2
+                                     78 	.globl _REN
+                                     79 	.globl _TB8
+                                     80 	.globl _RB8
+                                     81 	.globl _TI
+                                     82 	.globl _RI
+                                     83 	.globl _P17
+                                     84 	.globl _P16
+                                     85 	.globl _P15
+                                     86 	.globl _P14
+                                     87 	.globl _P13
+                                     88 	.globl _P12
+                                     89 	.globl _P11
+                                     90 	.globl _P10
+                                     91 	.globl _TF1
+                                     92 	.globl _TR1
+                                     93 	.globl _TF0
+                                     94 	.globl _TR0
+                                     95 	.globl _IE1
+                                     96 	.globl _IT1
+                                     97 	.globl _IE0
+                                     98 	.globl _IT0
+                                     99 	.globl _P07
+                                    100 	.globl _P06
+                                    101 	.globl _P05
+                                    102 	.globl _P04
+                                    103 	.globl _P03
+                                    104 	.globl _P02
+                                    105 	.globl _P01
+                                    106 	.globl _P00
+                                    107 	.globl _P4
+                                    108 	.globl _IAP_CONTR
+                                    109 	.globl _IAP_TRIG
+                                    110 	.globl _IAP_CMD
+                                    111 	.globl _IAP_ADDRL
+                                    112 	.globl _IAP_ADDRH
+                                    113 	.globl _IAP_DATA
+                                    114 	.globl _WDT_CONTR
+                                    115 	.globl _XICON
+                                    116 	.globl _SADEN
+                                    117 	.globl _IPH
+                                    118 	.globl _SADDR
+                                    119 	.globl _AUXR1
+                                    120 	.globl _AUXR
+                                    121 	.globl _B
+                                    122 	.globl _ACC
+                                    123 	.globl _PSW
+                                    124 	.globl _TH2
+                                    125 	.globl _TL2
+                                    126 	.globl _RCAP2H
+                                    127 	.globl _RCAP2L
+                                    128 	.globl _T2MOD
+                                    129 	.globl _T2CON
+                                    130 	.globl _IP
+                                    131 	.globl _P3
+                                    132 	.globl _IE
+                                    133 	.globl _P2
+                                    134 	.globl _SBUF
+                                    135 	.globl _SCON
+                                    136 	.globl _P1
+                                    137 	.globl _TH1
+                                    138 	.globl _TH0
+                                    139 	.globl _TL1
+                                    140 	.globl _TL0
+                                    141 	.globl _TMOD
+                                    142 	.globl _TCON
+                                    143 	.globl _PCON
+                                    144 	.globl _DPH
+                                    145 	.globl _DPL
+                                    146 	.globl _SP
+                                    147 	.globl _P0
+                                    148 ;--------------------------------------------------------
+                                    149 ; special function registers
+                                    150 ;--------------------------------------------------------
+                                    151 	.area RSEG    (ABS,DATA)
+      000000                        152 	.org 0x0000
+                           000080   153 _P0	=	0x0080
+                           000081   154 _SP	=	0x0081
+                           000082   155 _DPL	=	0x0082
+                           000083   156 _DPH	=	0x0083
+                           000087   157 _PCON	=	0x0087
+                           000088   158 _TCON	=	0x0088
+                           000089   159 _TMOD	=	0x0089
+                           00008A   160 _TL0	=	0x008a
+                           00008B   161 _TL1	=	0x008b
+                           00008C   162 _TH0	=	0x008c
+                           00008D   163 _TH1	=	0x008d
+                           000090   164 _P1	=	0x0090
+                           000098   165 _SCON	=	0x0098
+                           000099   166 _SBUF	=	0x0099
+                           0000A0   167 _P2	=	0x00a0
+                           0000A8   168 _IE	=	0x00a8
+                           0000B0   169 _P3	=	0x00b0
+                           0000B8   170 _IP	=	0x00b8
+                           0000C8   171 _T2CON	=	0x00c8
+                           0000C9   172 _T2MOD	=	0x00c9
+                           0000CA   173 _RCAP2L	=	0x00ca
+                           0000CB   174 _RCAP2H	=	0x00cb
+                           0000CC   175 _TL2	=	0x00cc
+                           0000CD   176 _TH2	=	0x00cd
+                           0000D0   177 _PSW	=	0x00d0
+                           0000E0   178 _ACC	=	0x00e0
+                           0000F0   179 _B	=	0x00f0
+                           00008E   180 _AUXR	=	0x008e
+                           0000A2   181 _AUXR1	=	0x00a2
+                           0000A9   182 _SADDR	=	0x00a9
+                           0000B7   183 _IPH	=	0x00b7
+                           0000B9   184 _SADEN	=	0x00b9
+                           0000C0   185 _XICON	=	0x00c0
+                           0000E1   186 _WDT_CONTR	=	0x00e1
+                           0000E2   187 _IAP_DATA	=	0x00e2
+                           0000E3   188 _IAP_ADDRH	=	0x00e3
+                           0000E4   189 _IAP_ADDRL	=	0x00e4
+                           0000E5   190 _IAP_CMD	=	0x00e5
+                           0000E6   191 _IAP_TRIG	=	0x00e6
+                           0000E7   192 _IAP_CONTR	=	0x00e7
+                           0000E8   193 _P4	=	0x00e8
+                                    194 ;--------------------------------------------------------
+                                    195 ; special function bits
+                                    196 ;--------------------------------------------------------
+                                    197 	.area RSEG    (ABS,DATA)
+      000000                        198 	.org 0x0000
+                           000080   199 _P00	=	0x0080
+                           000081   200 _P01	=	0x0081
+                           000082   201 _P02	=	0x0082
+                           000083   202 _P03	=	0x0083
+                           000084   203 _P04	=	0x0084
+                           000085   204 _P05	=	0x0085
+                           000086   205 _P06	=	0x0086
+                           000087   206 _P07	=	0x0087
+                           000088   207 _IT0	=	0x0088
+                           000089   208 _IE0	=	0x0089
+                           00008A   209 _IT1	=	0x008a
+                           00008B   210 _IE1	=	0x008b
+                           00008C   211 _TR0	=	0x008c
+                           00008D   212 _TF0	=	0x008d
+                           00008E   213 _TR1	=	0x008e
+                           00008F   214 _TF1	=	0x008f
+                           000090   215 _P10	=	0x0090
+                           000091   216 _P11	=	0x0091
+                           000092   217 _P12	=	0x0092
+                           000093   218 _P13	=	0x0093
+                           000094   219 _P14	=	0x0094
+                           000095   220 _P15	=	0x0095
+                           000096   221 _P16	=	0x0096
+                           000097   222 _P17	=	0x0097
+                           000098   223 _RI	=	0x0098
+                           000099   224 _TI	=	0x0099
+                           00009A   225 _RB8	=	0x009a
+                           00009B   226 _TB8	=	0x009b
+                           00009C   227 _REN	=	0x009c
+                           00009D   228 _SM2	=	0x009d
+                           00009E   229 _SM1	=	0x009e
+                           00009F   230 _SM0	=	0x009f
+                           0000A0   231 _P20	=	0x00a0
+                           0000A1   232 _P21	=	0x00a1
+                           0000A2   233 _P22	=	0x00a2
+                           0000A3   234 _P23	=	0x00a3
+                           0000A4   235 _P24	=	0x00a4
+                           0000A5   236 _P25	=	0x00a5
+                           0000A6   237 _P26	=	0x00a6
+                           0000A7   238 _P27	=	0x00a7
+                           0000A8   239 _EX0	=	0x00a8
+                           0000A9   240 _ET0	=	0x00a9
+                           0000AA   241 _EX1	=	0x00aa
+                           0000AB   242 _ET1	=	0x00ab
+                           0000AC   243 _ES	=	0x00ac
+                           0000AD   244 _ET2	=	0x00ad
+                           0000AF   245 _EA	=	0x00af
+                           0000B0   246 _P30	=	0x00b0
+                           0000B1   247 _P31	=	0x00b1
+                           0000B2   248 _P32	=	0x00b2
+                           0000B3   249 _P33	=	0x00b3
+                           0000B4   250 _P34	=	0x00b4
+                           0000B5   251 _P35	=	0x00b5
+                           0000B6   252 _P36	=	0x00b6
+                           0000B7   253 _P37	=	0x00b7
+                           0000B8   254 _PX0	=	0x00b8
+                           0000B9   255 _PT0	=	0x00b9
+                           0000BA   256 _PX1	=	0x00ba
+                           0000BB   257 _PT1	=	0x00bb
+                           0000BC   258 _PS	=	0x00bc
+                           0000BD   259 _PT2	=	0x00bd
+                           0000C8   260 _CP_RL2	=	0x00c8
+                           0000C9   261 _C_T2	=	0x00c9
+                           0000CA   262 _TR2	=	0x00ca
+                           0000CB   263 _EXEN2	=	0x00cb
+                           0000CC   264 _TCLK	=	0x00cc
+                           0000CD   265 _RCLK	=	0x00cd
+                           0000CE   266 _EXF2	=	0x00ce
+                           0000CF   267 _TF2	=	0x00cf
+                           0000D0   268 _P	=	0x00d0
+                           0000D2   269 _OV	=	0x00d2
+                           0000D3   270 _RS0	=	0x00d3
+                           0000D4   271 _RS1	=	0x00d4
+                           0000D5   272 _F0	=	0x00d5
+                           0000D6   273 _AC	=	0x00d6
+                           0000D7   274 _CY	=	0x00d7
+                           0000C0   275 _IT2	=	0x00c0
+                           0000C1   276 _IE2	=	0x00c1
+                           0000C2   277 _EX2	=	0x00c2
+                           0000C3   278 _PX2	=	0x00c3
+                           0000C4   279 _IT3	=	0x00c4
+                           0000C5   280 _IE3	=	0x00c5
+                           0000C6   281 _EX3	=	0x00c6
+                           0000C7   282 _PX3	=	0x00c7
+                           0000E8   283 _P40	=	0x00e8
+                           0000E9   284 _P41	=	0x00e9
+                           0000EA   285 _P42	=	0x00ea
+                           0000EB   286 _P43	=	0x00eb
+                           0000EC   287 _P44	=	0x00ec
+                           0000ED   288 _P45	=	0x00ed
+                           0000EE   289 _P46	=	0x00ee
+                           0000EF   290 _P47	=	0x00ef
+                                    291 ;--------------------------------------------------------
+                                    292 ; overlayable register banks
+                                    293 ;--------------------------------------------------------
+                                    294 	.area REG_BANK_0	(REL,OVR,DATA)
+      000000                        295 	.ds 8
+                                    296 ;--------------------------------------------------------
+                                    297 ; internal ram data
+                                    298 ;--------------------------------------------------------
+                                    299 	.area DSEG    (DATA)
+      000008                        300 _Timer0_InterruptHandler_u8Cnt_65536_2:
+      000008                        301 	.ds 1
+      000009                        302 _Timer1_InterruptHandler_u8Cnt_65536_6:
+      000009                        303 	.ds 1
+      00000A                        304 _Timer2_InterruptHandler_u8Cnt_65536_10:
+      00000A                        305 	.ds 1
+                                    306 ;--------------------------------------------------------
+                                    307 ; overlayable items in internal ram
+                                    308 ;--------------------------------------------------------
+                                    309 ;--------------------------------------------------------
+                                    310 ; Stack segment in internal ram
+                                    311 ;--------------------------------------------------------
+                                    312 	.area	SSEG
+      00000B                        313 __start__stack:
+      00000B                        314 	.ds	1
+                                    315 
+                                    316 ;--------------------------------------------------------
+                                    317 ; indirectly addressable internal ram data
+                                    318 ;--------------------------------------------------------
+                                    319 	.area ISEG    (DATA)
+                                    320 ;--------------------------------------------------------
+                                    321 ; absolute internal ram data
+                                    322 ;--------------------------------------------------------
+                                    323 	.area IABS    (ABS,DATA)
+                                    324 	.area IABS    (ABS,DATA)
+                                    325 ;--------------------------------------------------------
+                                    326 ; bit data
+                                    327 ;--------------------------------------------------------
+                                    328 	.area BSEG    (BIT)
+                                    329 ;--------------------------------------------------------
+                                    330 ; paged external ram data
+                                    331 ;--------------------------------------------------------
+                                    332 	.area PSEG    (PAG,XDATA)
+                                    333 ;--------------------------------------------------------
+                                    334 ; external ram data
+                                    335 ;--------------------------------------------------------
+                                    336 	.area XSEG    (XDATA)
+                                    337 ;--------------------------------------------------------
+                                    338 ; absolute external ram data
+                                    339 ;--------------------------------------------------------
+                                    340 	.area XABS    (ABS,XDATA)
+                                    341 ;--------------------------------------------------------
+                                    342 ; external initialized ram data
+                                    343 ;--------------------------------------------------------
+                                    344 	.area XISEG   (XDATA)
+                                    345 	.area HOME    (CODE)
+                                    346 	.area GSINIT0 (CODE)
+                                    347 	.area GSINIT1 (CODE)
+                                    348 	.area GSINIT2 (CODE)
+                                    349 	.area GSINIT3 (CODE)
+                                    350 	.area GSINIT4 (CODE)
+                                    351 	.area GSINIT5 (CODE)
+                                    352 	.area GSINIT  (CODE)
+                                    353 	.area GSFINAL (CODE)
+                                    354 	.area CSEG    (CODE)
+                                    355 ;--------------------------------------------------------
+                                    356 ; interrupt vector
+                                    357 ;--------------------------------------------------------
+                                    358 	.area HOME    (CODE)
+      000000                        359 __interrupt_vect:
+      000000 02 00 31         [24]  360 	ljmp	__sdcc_gsinit_startup
+      000003 32               [24]  361 	reti
+      000004                        362 	.ds	7
+      00000B 02 00 8D         [24]  363 	ljmp	_Timer0_InterruptHandler
+      00000E                        364 	.ds	5
+      000013 32               [24]  365 	reti
+      000014                        366 	.ds	7
+      00001B 02 00 A9         [24]  367 	ljmp	_Timer1_InterruptHandler
+      00001E                        368 	.ds	5
+      000023 32               [24]  369 	reti
+      000024                        370 	.ds	7
+      00002B 02 00 C5         [24]  371 	ljmp	_Timer2_InterruptHandler
+                                    372 ;--------------------------------------------------------
+                                    373 ; global & static initialisations
+                                    374 ;--------------------------------------------------------
+                                    375 	.area HOME    (CODE)
+                                    376 	.area GSINIT  (CODE)
+                                    377 	.area GSFINAL (CODE)
+                                    378 	.area GSINIT  (CODE)
+                                    379 	.globl __sdcc_gsinit_startup
+                                    380 	.globl __sdcc_program_startup
+                                    381 	.globl __start__stack
+                                    382 	.globl __mcs51_genXINIT
+                                    383 	.globl __mcs51_genXRAMCLEAR
+                                    384 	.globl __mcs51_genRAMCLEAR
+                                    385 	.area GSFINAL (CODE)
+      00008A 02 00 2E         [24]  386 	ljmp	__sdcc_program_startup
+                                    387 ;--------------------------------------------------------
+                                    388 ; Home
+                                    389 ;--------------------------------------------------------
+                                    390 	.area HOME    (CODE)
+                                    391 	.area HOME    (CODE)
+      00002E                        392 __sdcc_program_startup:
+      00002E 02 00 E0         [24]  393 	ljmp	_main
+                                    394 ;	return from main will return to caller
+                                    395 ;--------------------------------------------------------
+                                    396 ; code
+                                    397 ;--------------------------------------------------------
+                                    398 	.area CSEG    (CODE)
+                                    399 ;------------------------------------------------------------
+                                    400 ;Allocation info for local variables in function 'Timer0_InterruptHandler'
+                                    401 ;------------------------------------------------------------
+                                    402 ;u8Cnt                     Allocated with name '_Timer0_InterruptHandler_u8Cnt_65536_2'
+                                    403 ;------------------------------------------------------------
+                                    404 ;	main.c:39: void Timer0_InterruptHandler(void) __interrupt TF0_VECTOR {
+                                    405 ;	-----------------------------------------
+                                    406 ;	 function Timer0_InterruptHandler
+                                    407 ;	-----------------------------------------
+      00008D                        408 _Timer0_InterruptHandler:
+                           000007   409 	ar7 = 0x07
+                           000006   410 	ar6 = 0x06
+                           000005   411 	ar5 = 0x05
+                           000004   412 	ar4 = 0x04
+                           000003   413 	ar3 = 0x03
+                           000002   414 	ar2 = 0x02
+                           000001   415 	ar1 = 0x01
+                           000000   416 	ar0 = 0x00
+      00008D C0 E0            [24]  417 	push	acc
+      00008F C0 D0            [24]  418 	push	psw
+                                    419 ;	main.c:42: TIM0_CNT(timer0reload);
+      000091 75 8C D8         [24]  420 	mov	_TH0,#0xd8
+      000094 75 8A F0         [24]  421 	mov	_TL0,#0xf0
+                                    422 ;	main.c:44: if(++u8Cnt > 100) {
+      000097 05 08            [12]  423 	inc	_Timer0_InterruptHandler_u8Cnt_65536_2
+      000099 E5 08            [12]  424 	mov	a,_Timer0_InterruptHandler_u8Cnt_65536_2
+      00009B 24 9B            [12]  425 	add	a,#0xff - 0x64
+      00009D 50 05            [24]  426 	jnc	00106$
+                                    427 ;	main.c:45: u8Cnt = 0;
+      00009F 75 08 00         [24]  428 	mov	_Timer0_InterruptHandler_u8Cnt_65536_2,#0x00
+                                    429 ;	main.c:46: P10 = !P10;
+      0000A2 B2 90            [12]  430 	cpl	_P10
+      0000A4                        431 00106$:
+                                    432 ;	main.c:49: }
+      0000A4 D0 D0            [24]  433 	pop	psw
+      0000A6 D0 E0            [24]  434 	pop	acc
+      0000A8 32               [24]  435 	reti
+                                    436 ;	eliminated unneeded mov psw,# (no regs used in bank)
+                                    437 ;	eliminated unneeded push/pop dpl
+                                    438 ;	eliminated unneeded push/pop dph
+                                    439 ;	eliminated unneeded push/pop b
+                                    440 ;------------------------------------------------------------
+                                    441 ;Allocation info for local variables in function 'Timer1_InterruptHandler'
+                                    442 ;------------------------------------------------------------
+                                    443 ;u8Cnt                     Allocated with name '_Timer1_InterruptHandler_u8Cnt_65536_6'
+                                    444 ;------------------------------------------------------------
+                                    445 ;	main.c:52: void Timer1_InterruptHandler(void) __interrupt TF1_VECTOR {
+                                    446 ;	-----------------------------------------
+                                    447 ;	 function Timer1_InterruptHandler
+                                    448 ;	-----------------------------------------
+      0000A9                        449 _Timer1_InterruptHandler:
+      0000A9 C0 E0            [24]  450 	push	acc
+      0000AB C0 D0            [24]  451 	push	psw
+                                    452 ;	main.c:55: TIM1_CNT(timer1reload);
+      0000AD 75 8D B1         [24]  453 	mov	_TH1,#0xb1
+      0000B0 75 8B E0         [24]  454 	mov	_TL1,#0xe0
+                                    455 ;	main.c:57: if(++u8Cnt > 100) {
+      0000B3 05 09            [12]  456 	inc	_Timer1_InterruptHandler_u8Cnt_65536_6
+      0000B5 E5 09            [12]  457 	mov	a,_Timer1_InterruptHandler_u8Cnt_65536_6
+      0000B7 24 9B            [12]  458 	add	a,#0xff - 0x64
+      0000B9 50 05            [24]  459 	jnc	00106$
+                                    460 ;	main.c:58: u8Cnt = 0;
+      0000BB 75 09 00         [24]  461 	mov	_Timer1_InterruptHandler_u8Cnt_65536_6,#0x00
+                                    462 ;	main.c:59: P11 = !P11;
+      0000BE B2 91            [12]  463 	cpl	_P11
+      0000C0                        464 00106$:
+                                    465 ;	main.c:62: }
+      0000C0 D0 D0            [24]  466 	pop	psw
+      0000C2 D0 E0            [24]  467 	pop	acc
+      0000C4 32               [24]  468 	reti
+                                    469 ;	eliminated unneeded mov psw,# (no regs used in bank)
+                                    470 ;	eliminated unneeded push/pop dpl
+                                    471 ;	eliminated unneeded push/pop dph
+                                    472 ;	eliminated unneeded push/pop b
+                                    473 ;------------------------------------------------------------
+                                    474 ;Allocation info for local variables in function 'Timer2_InterruptHandler'
+                                    475 ;------------------------------------------------------------
+                                    476 ;u8Cnt                     Allocated with name '_Timer2_InterruptHandler_u8Cnt_65536_10'
+                                    477 ;------------------------------------------------------------
+                                    478 ;	main.c:65: void Timer2_InterruptHandler(void) __interrupt TF2_EXF2_VECTOR {
+                                    479 ;	-----------------------------------------
+                                    480 ;	 function Timer2_InterruptHandler
+                                    481 ;	-----------------------------------------
+      0000C5                        482 _Timer2_InterruptHandler:
+      0000C5 C0 E0            [24]  483 	push	acc
+      0000C7 C0 D0            [24]  484 	push	psw
+                                    485 ;	main.c:68: if(TF2) {
+                                    486 ;	main.c:70: cbit_TF2;
+                                    487 ;	assignBit
+      0000C9 10 CF 02         [24]  488 	jbc	_TF2,00115$
+      0000CC 80 0D            [24]  489 	sjmp	00105$
+      0000CE                        490 00115$:
+                                    491 ;	main.c:72: if(++u8Cnt > 100) {
+      0000CE 05 0A            [12]  492 	inc	_Timer2_InterruptHandler_u8Cnt_65536_10
+      0000D0 E5 0A            [12]  493 	mov	a,_Timer2_InterruptHandler_u8Cnt_65536_10
+      0000D2 24 9B            [12]  494 	add	a,#0xff - 0x64
+      0000D4 50 05            [24]  495 	jnc	00105$
+                                    496 ;	main.c:73: u8Cnt = 0;
+      0000D6 75 0A 00         [24]  497 	mov	_Timer2_InterruptHandler_u8Cnt_65536_10,#0x00
+                                    498 ;	main.c:74: P12 = !P12;
+      0000D9 B2 92            [12]  499 	cpl	_P12
+      0000DB                        500 00105$:
+                                    501 ;	main.c:79: }
+      0000DB D0 D0            [24]  502 	pop	psw
+      0000DD D0 E0            [24]  503 	pop	acc
+      0000DF 32               [24]  504 	reti
+                                    505 ;	eliminated unneeded mov psw,# (no regs used in bank)
+                                    506 ;	eliminated unneeded push/pop dpl
+                                    507 ;	eliminated unneeded push/pop dph
+                                    508 ;	eliminated unneeded push/pop b
+                                    509 ;------------------------------------------------------------
+                                    510 ;Allocation info for local variables in function 'main'
+                                    511 ;------------------------------------------------------------
+                                    512 ;	main.c:82: void main(void) {
+                                    513 ;	-----------------------------------------
+                                    514 ;	 function main
+                                    515 ;	-----------------------------------------
+      0000E0                        516 _main:
+                                    517 ;	main.c:84: TIM0_MODE1_INT_CTRL;
+      0000E0 53 89 F0         [24]  518 	anl	_TMOD,#0xf0
+      0000E3 43 89 01         [24]  519 	orl	_TMOD,#0x01
+                                    520 ;	main.c:85: TIM0_CNT(timer0reload);
+      0000E6 75 8C D8         [24]  521 	mov	_TH0,#0xd8
+      0000E9 75 8A F0         [24]  522 	mov	_TL0,#0xf0
+                                    523 ;	main.c:86: TIM0_RUN;
+                                    524 ;	assignBit
+      0000EC D2 8C            [12]  525 	setb	_TR0
+                                    526 ;	main.c:87: TIM0_INTERRUPT_ENABLE;
+                                    527 ;	assignBit
+      0000EE D2 A9            [12]  528 	setb	_ET0
+                                    529 ;	main.c:89: TIM1_MODE1_INT_CTRL;
+      0000F0 53 89 0F         [24]  530 	anl	_TMOD,#0x0f
+      0000F3 43 89 10         [24]  531 	orl	_TMOD,#0x10
+                                    532 ;	main.c:90: TIM1_CNT(timer1reload);
+      0000F6 75 8D B1         [24]  533 	mov	_TH1,#0xb1
+      0000F9 75 8B E0         [24]  534 	mov	_TL1,#0xe0
+                                    535 ;	main.c:91: TIM1_RUN;
+                                    536 ;	assignBit
+      0000FC D2 8E            [12]  537 	setb	_TR1
+                                    538 ;	main.c:92: TIM1_INTERRUPT_ENABLE;
+                                    539 ;	assignBit
+      0000FE D2 AB            [12]  540 	setb	_ET1
+                                    541 ;	main.c:96: TIM2_CNT(0);
+      000100 75 CD 00         [24]  542 	mov	_TH2,#0x00
+      000103 75 CC 00         [24]  543 	mov	_TL2,#0x00
+                                    544 ;	main.c:97: TIM2_RCAP2(timer2reload);
+      000106 75 CB 63         [24]  545 	mov	_RCAP2H,#0x63
+      000109 75 CA C0         [24]  546 	mov	_RCAP2L,#0xc0
+                                    547 ;	main.c:98: TIM2_RUN;
+                                    548 ;	assignBit
+      00010C D2 CA            [12]  549 	setb	_TR2
+                                    550 ;	main.c:99: TIM2_INTERRUPT_ENABLE;
+                                    551 ;	assignBit
+      00010E D2 AD            [12]  552 	setb	_ET2
+                                    553 ;	main.c:101: GLOBAL_INTERRUPT_ENABLE;
+                                    554 ;	assignBit
+      000110 D2 AF            [12]  555 	setb	_EA
+                                    556 ;	main.c:103: while(1);
+      000112                        557 00120$:
+                                    558 ;	main.c:105: }
+      000112 80 FE            [24]  559 	sjmp	00120$
+                                    560 	.area CSEG    (CODE)
+                                    561 	.area CONST   (CODE)
+                                    562 	.area XINIT   (CODE)
+                                    563 	.area CABS    (ABS,CODE)

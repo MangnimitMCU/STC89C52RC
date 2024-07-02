@@ -7,11 +7,21 @@ For SDCC Compiler
 #ifndef __SFR_MACRO_REG52_H
 #define __SFR_MACRO_REG52_H
 
-#include "REG52.H"
 #include "stdint.h"
 
-#define sb(REG, BIT)            (REG |= BIT)
-#define cb(REG, BIT)            (REG &= ~BIT)
+#define sb(REG, BIT)        (REG |= BIT)
+#define cb(REG, BIT)        (REG &= ~BIT)
+
+/**********************************************/
+/* GPIO */
+#define P_RXD       P30
+#define P_TXD       P31
+#define P_INT0      P32
+#define P_INT1      P33
+#define P_T0        P34
+#define P_T1        P35
+#define P_T2        P10
+#define P_T2EX      P11
 
 /**********************************************/
 /* SFR Bit Access */
@@ -183,43 +193,43 @@ For SDCC Compiler
 /**********************************************/
 /* SFR Byte Access */
 /* PCON */
-#define sbit_IDL                sb(PCON, IDL)
-#define sbit_PD                 sb(PCON, PD)
-#define sbit_GF0                sb(PCON, GF0)
-#define sbit_GF1                sb(PCON, GF1)
-#define sbit_SMOD               sb(PCON, SMOD)
+#define sbit_IDL                sb(PCON, _IDL)
+#define sbit_PD                 sb(PCON, _PD)
+#define sbit_GF0                sb(PCON, _GF0)
+#define sbit_GF1                sb(PCON, _GF1)
+#define sbit_SMOD               sb(PCON, _SMOD)
 
-#define cbit_IDL                cb(PCON, IDL)
-#define cbit_PD                 cb(PCON, PD)
-#define cbit_GF0                cb(PCON, GF0)
-#define cbit_GF1                cb(PCON, GF1)
-#define cbit_SMOD               cb(PCON, SMOD)
+#define cbit_IDL                cb(PCON, _IDL)
+#define cbit_PD                 cb(PCON, _PD)
+#define cbit_GF0                cb(PCON, _GF0)
+#define cbit_GF1                cb(PCON, _GF1)
+#define cbit_SMOD               cb(PCON, _SMOD)
 
 /* TMOD */
-#define sbit_M0_T0              sb(TMOD, M0_T0)
-#define sbit_M1_T0              sb(TMOD, M1_T0)
-#define sbit_C_T0               sb(TMOD, C_T0)
-#define sbit_GATE_T0            sb(TMOD, GATE_T0)
-#define sbit_M0_T1              sb(TMOD, M0_T1)
-#define sbit_M1_T1              sb(TMOD, M1_T1)
-#define sbit_C_T1               sb(TMOD, C_T1)
-#define sbit_GATE_T1            sb(TMOD, GATE_T1)
+#define sbit_M0_T0              sb(TMOD, _M0_T0)
+#define sbit_M1_T0              sb(TMOD, _M1_T0)
+#define sbit_C_T0               sb(TMOD, _C_T0)
+#define sbit_GATE_T0            sb(TMOD, _GATE_T0)
+#define sbit_M0_T1              sb(TMOD, _M0_T1)
+#define sbit_M1_T1              sb(TMOD, _M1_T1)
+#define sbit_C_T1               sb(TMOD, _C_T1)
+#define sbit_GATE_T1            sb(TMOD, _GATE_T1)
 
-#define cbit_M0_T0              cb(TMOD, M0_T0)
-#define cbit_M1_T0              cb(TMOD, M1_T0)
-#define cbit_CT_T0              cb(TMOD, C_T0)
-#define cbit_GATE_T0            cb(TMOD, GATE_T0)
-#define cbit_M0_T1              cb(TMOD, M0_T1)
-#define cbit_M1_T1              cb(TMOD, M1_T1)
-#define cbit_C_T1               cb(TMOD, C_T1)
-#define cbit_GATE_T1            cb(TMOD, GATE_T1)
+#define cbit_M0_T0              cb(TMOD, _M0_T0)
+#define cbit_M1_T0              cb(TMOD, _M1_T0)
+#define cbit_CT_T0              cb(TMOD, _C_T0)
+#define cbit_GATE_T0            cb(TMOD, _GATE_T0)
+#define cbit_M0_T1              cb(TMOD, _M0_T1)
+#define cbit_M1_T1              cb(TMOD, _M1_T1)
+#define cbit_C_T1               cb(TMOD, _C_T1)
+#define cbit_GATE_T1            cb(TMOD, _GATE_T1)
 
 /* T2MOD */
-#define sbit_DCEN               sb(T2MOD, DCEN)
-#define sbit_T2OE               sb(T2MOD, T2OE)
+#define sbit_DCEN               sb(T2MOD, _DCEN)
+#define sbit_T2OE               sb(T2MOD, _T2OE)
 
-#define cbit_DCEN               cb(T2MOD, DCEN)
-#define cbit_T2OE               cb(T2MOD, T2OE)
+#define cbit_DCEN               cb(T2MOD, _DCEN)
+#define cbit_T2OE               cb(T2MOD, _T2OE)
 
 /* Interrupt */
 #define GLOBAL_INTERRUPT_ENABLE         sbit_EA
@@ -268,7 +278,7 @@ For SDCC Compiler
 #define TIM0_MODE1_INT_CTRL             do{cb(TMOD, 0x0F);sb(TMOD, 0x01);}while(0)
 #define TIM0_MODE2_INT_CTRL             do{cb(TMOD, 0x0F);sb(TMOD, 0x02);}while(0)
 #define TIM0_MODE3_INT_CTRL             do{cb(TMOD, 0x0F);sb(TMOD, 0x03);}while(0)
-    
+
 #define CNT0_MODE0_INT_CTRL             do{cb(TMOD, 0x0F);sb(TMOD, 0x04);}while(0)
 #define CNT0_MODE1_INT_CTRL             do{cb(TMOD, 0x0F);sb(TMOD, 0x05);}while(0)
 #define CNT0_MODE2_INT_CTRL             do{cb(TMOD, 0x0F);sb(TMOD, 0x06);}while(0)
@@ -278,7 +288,7 @@ For SDCC Compiler
 #define TIM0_MODE1_EXT_CTRL             do{cb(TMOD, 0x0F);sb(TMOD, 0x09);}while(0)
 #define TIM0_MODE2_EXT_CTRL             do{cb(TMOD, 0x0F);sb(TMOD, 0x0A);}while(0)
 #define TIM0_MODE3_EXT_CTRL             do{cb(TMOD, 0x0F);sb(TMOD, 0x0B);}while(0)
-    
+
 #define CNT0_MODE0_EXT_CTRL             do{cb(TMOD, 0x0F);sb(TMOD, 0x0C);}while(0)
 #define CNT0_MODE1_EXT_CTRL             do{cb(TMOD, 0x0F);sb(TMOD, 0x0D);}while(0)
 #define CNT0_MODE2_EXT_CTRL             do{cb(TMOD, 0x0F);sb(TMOD, 0x0E);}while(0)
@@ -293,7 +303,7 @@ For SDCC Compiler
 #define TIM1_MODE0_INT_CTRL             cb(TMOD, 0xF0)
 #define TIM1_MODE1_INT_CTRL             do{cb(TMOD, 0xF0);sb(TMOD, 0x10);}while(0)
 #define TIM1_MODE2_INT_CTRL             do{cb(TMOD, 0xF0);sb(TMOD, 0x20);}while(0)
-   
+
 #define CNT1_MODE0_INT_CTRL             do{cb(TMOD, 0xF0);sb(TMOD, 0x40);}while(0)
 #define CNT1_MODE1_INT_CTRL             do{cb(TMOD, 0xF0);sb(TMOD, 0x50);}while(0)
 #define CNT1_MODE2_INT_CTRL             do{cb(TMOD, 0xF0);sb(TMOD, 0x60);}while(0)
@@ -301,7 +311,7 @@ For SDCC Compiler
 #define TIM1_MODE0_EXT_CTRL             do{cb(TMOD, 0xF0);sb(TMOD, 0x80);}while(0)
 #define TIM1_MODE1_EXT_CTRL             do{cb(TMOD, 0xF0);sb(TMOD, 0x90);}while(0)
 #define TIM1_MODE2_EXT_CTRL             do{cb(TMOD, 0xF0);sb(TMOD, 0xA0);}while(0)
-   
+
 #define CNT1_MODE0_EXT_CTRL             do{cb(TMOD, 0xF0);sb(TMOD, 0xC0);}while(0)
 #define CNT1_MODE1_EXT_CTRL             do{cb(TMOD, 0xF0);sb(TMOD, 0xD0);}while(0)
 #define CNT1_MODE2_EXT_CTRL             do{cb(TMOD, 0xF0);sb(TMOD, 0xE0);}while(0)

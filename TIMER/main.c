@@ -1,11 +1,10 @@
 /////////////////////////////////////////////////////////////////////
 // Author       : Mr.Somlak Mangnimit
-// Device       : AT89C52
+// Device       : STC89C52RC
 // Clock Speed  : 12T Mode @ 24MHz
 /////////////////////////////////////////////////////////////////////
 
-#include "../REG52.H"
-#include "../SFR_MACRO_REG52.H"
+#include "../STC89C52RC.H"
 
 /*
 Fsys / 12DivClock or 6DivClock = Timer Clock Input

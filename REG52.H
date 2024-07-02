@@ -156,36 +156,113 @@ __sbit __at (0xD6) AC       ;
 __sbit __at (0xD7) CY       ;
 
 /* SFR Bit define */
+/* P0 */
+#define _P00        0x01
+#define _P01        0x02
+#define _P02        0x04
+#define _P03        0x08
+#define _P04        0x10
+#define _P05        0x20
+#define _P06        0x40
+#define _P07        0x80
+
+/* TCON */
+#define _IT0        0x01
+#define _IE0        0x02
+#define _IT1        0x04
+#define _IE1        0x08
+#define _TR0        0x10
+#define _TF0        0x20
+#define _TR1        0x40
+#define _TF1        0x80
+
+/* P1 */
+#define _P10        0x01
+#define _P11        0x02
+#define _P12        0x04
+#define _P13        0x08
+#define _P14        0x10
+#define _P15        0x20
+#define _P16        0x40
+#define _P17        0x80
+
+/* SCON */
+#define _RI         0x01
+#define _TI         0x02
+#define _RB8        0x04
+#define _TB8        0x08
+#define _REN        0x10
+#define _SM2        0x20
+#define _SM1        0x40
+#define _SM0        0x80
+
+/* P2 */
+#define _P20        0x01
+#define _P21        0x02
+#define _P22        0x04
+#define _P23        0x08
+#define _P24        0x10
+#define _P25        0x20
+#define _P26        0x40
+#define _P27        0x80
+
+/* IE */
+#define _EX0        0x01
+#define _ET0        0x02
+#define _EX1        0x04
+#define _ET1        0x08
+#define _ES         0x10
+#define _ET2        0x20
+#define _EA         0x80
+
+/* P3 */
+#define _P30        0x01
+#define _P31        0x02
+#define _P32        0x04
+#define _P33        0x08
+#define _P34        0x10
+#define _P35        0x20
+#define _P36        0x40
+#define _P37        0x80
+
+/* IP */
+#define _PX0        0x01
+#define _PT0        0x02
+#define _PX1        0x04
+#define _PT1        0x08
+#define _PS         0x10
+#define _PT2        0x20
+
+/* T2CON */
+#define _CP_RL2     0x01
+#define _C_T2       0x02
+#define _TR2        0x04
+#define _EXEN2      0x08
+#define _TCLK       0x10
+#define _RCLK       0x20
+#define _EXF2       0x40
+#define _TF2        0x80
+
 /* PCON */
-#define IDL         0x01
-#define PD          0x02
-#define GF0         0x04
-#define GF1         0x08
-#define SMOD        0x80
+#define _IDL        0x01
+#define _PD         0x02
+#define _GF0        0x04
+#define _GF1        0x08
+#define _SMOD       0x80
 
 /* TMOD */
-#define M0_T0       0x01
-#define M1_T0       0x02
-#define C_T0        0x04
-#define GATE_T0     0x08
-#define M0_T1       0x10
-#define M1_T1       0x20
-#define C_T1        0x40
-#define GATE_T1     0x80
+#define _M0_T0      0x01
+#define _M1_T0      0x02
+#define _C_T0       0x04
+#define _GATE_T0    0x08
+#define _M0_T1      0x10
+#define _M1_T1      0x20
+#define _C_T1       0x40
+#define _GATE_T1    0x80
 
 /* T2MOD */
-#define DCEN        0x01
-#define T2OE        0x02
-
-/* GPIO */
-#define P_RXD       P30
-#define P_TXD       P31
-#define P_INT0      P32
-#define P_INT1      P33
-#define P_T0        P34
-#define P_T1        P35
-#define P_T2        P10
-#define P_T2EX      P11
+#define _DCEN       0x01
+#define _T2OE       0x02
 
 /* Interrupt numbers: address = (number * 8) + 3 */
 #define IE0_VECTOR      0    /* External 0 (Highest Priority) */
